@@ -1,0 +1,4 @@
+python main.py --model resnet --epochs 10 --img_size 32
+
+
+python main.py --model vit-hf-scratch --epochs 50 --img_size 32

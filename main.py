@@ -5,7 +5,7 @@ import torch.optim as optim
 from torchvision import datasets, transforms
 
 from models.resnet import ResNet18
-from models.hf_vit import HFViTPretrained, create_big_vit_for_cifar10
+from models.vit import HFViTPretrained, create_big_vit_for_cifar10
 
 from utils.utils import train, evaluate
 from utils.plot_utils import plot_loss_accuracy

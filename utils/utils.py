@@ -35,6 +35,10 @@ def evaluate(model, dataloader, criterion, device):
         for images, labels in dataloader:
             images, labels = images.to(device), labels.to(device)
             outputs = model(images)
+
+            if hasattr(outputs, 'logits'):
+                outputs = outputs.logits
+
             loss = criterion(outputs, labels)
             running_loss += loss.item() * images.size(0)
 
