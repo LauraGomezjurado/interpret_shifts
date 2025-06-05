@@ -1,6 +1,6 @@
 import torch
 
-def train(model, dataloader, criterion, optimizer, device):
+def train(model, dataloader, criterion, optimizer, device, scheduler=None, grad_clip=None):
     model.train()
     running_loss = 0.0
     correct = 0
@@ -13,7 +13,16 @@ def train(model, dataloader, criterion, optimizer, device):
         outputs = model(images)
         loss = criterion(outputs, labels)
         loss.backward()
+        
+        # Gradient clipping for stability
+        if grad_clip is not None:
+            torch.nn.utils.clip_grad_norm_(model.parameters(), grad_clip)
+        
         optimizer.step()
+        
+        # Update learning rate scheduler
+        if scheduler is not None:
+            scheduler.step()
 
         running_loss += loss.item() * images.size(0)
 
