@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-06-05T00:28:03.846214",
+  "model_type": "resnet",
+  "device": "mps",
+  "num_samples": 400,
+  "memory_optimized": true,
+  "performance": {
+    "cifar10_accuracy": 81.25,
+    "svhn_accuracy": 9.5,
+    "accuracy_drop": 71.75
+  },
+  "calibration": {
+    "cifar10_ece": 0.6100053191184998,
+    "svhn_ece": 0.09421691298484802,
+    "ece_increase": -0.5157884061336517
+  },
+  "attribution_drift": {
+    "svhn": {
+      "drift_metrics": {
+        "saliency": {
+          "iou": 0.11561272293329239,
+          "pearson": 0.02145262062549591,
+          "spearman": 0.010172146372497082
+        },
+        "gradcam": {
+          "iou": 0.10559958219528198,
+          "pearson": -0.044099364429712296,
+          "spearman": 0.002635896671563387
+        }
+      }
+    }
+  }
+}

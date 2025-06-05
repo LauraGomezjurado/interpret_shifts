@@ -1,0 +1,209 @@
+{
+  "timestamp": "2025-06-04T20:48:42.258571",
+  "model_type": "vit",
+  "device": "cpu",
+  "performance": {
+    "cifar10_accuracy": 70.46875,
+    "svhn_accuracy": 9.6875,
+    "cifar10_samples": 640,
+    "svhn_samples": 640
+  },
+  "calibration": {
+    "cifar10_ece": 0.06618752330541611,
+    "svhn_ece": 0.4865589141845703
+  },
+  "attribution_drift": {
+    "svhn": {
+      "saliency": {
+        "iou": 0.15592877566814423,
+        "pearson": 0.11059172451496124,
+        "spearman": 0.11515412479639053
+      },
+      "gradcam": {
+        "iou": 0.0,
+        "pearson": null,
+        "spearman": 0.9999999403953552
+      },
+      "integrated_grads": {
+        "iou": 0.15551136434078217,
+        "pearson": -0.017308715730905533,
+        "spearman": -0.009477219544351101
+      },
+      "attention_rollout": {
+        "iou": 0.0,
+        "pearson": null,
+        "spearman": 0.9999999403953552
+      }
+    },
+    "corruptions": {
+      "gaussian_noise": {
+        "1": {
+          "accuracy": 60.416666666666664,
+          "ece": 0.13265042006969452,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 0.23275475203990936,
+              "pearson": 0.30239808559417725,
+              "spearman": 0.37526020407676697
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 0.3248688876628876,
+              "pearson": 0.15229599177837372,
+              "spearman": 0.24164322018623352
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        },
+        "3": {
+          "accuracy": 26.041666666666668,
+          "ece": 0.35413363575935364,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 0.1694970726966858,
+              "pearson": 0.14492499828338623,
+              "spearman": 0.14601586759090424
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 0.18895955383777618,
+              "pearson": 0.017736250534653664,
+              "spearman": 0.021010663360357285
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        }
+      },
+      "brightness": {
+        "1": {
+          "accuracy": 65.625,
+          "ece": 0.11827994138002396,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 0.4352317154407501,
+              "pearson": 0.6680437922477722,
+              "spearman": 0.6637797951698303
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 0.3468323051929474,
+              "pearson": 0.5805976390838623,
+              "spearman": 0.48676547408103943
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        },
+        "3": {
+          "accuracy": 26.041666666666668,
+          "ece": 0.3503109812736511,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 0.17910581827163696,
+              "pearson": 0.17320865392684937,
+              "spearman": 0.18046875298023224
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 0.18193112313747406,
+              "pearson": 0.0351947620511055,
+              "spearman": 0.022980324923992157
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        }
+      },
+      "contrast": {
+        "1": {
+          "accuracy": 72.91666666666667,
+          "ece": 0.09359587728977203,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 0.5259222984313965,
+              "pearson": 0.7539401650428772,
+              "spearman": 0.7440677285194397
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 0.4863417446613312,
+              "pearson": 0.6761927008628845,
+              "spearman": 0.6794028878211975
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        },
+        "3": {
+          "accuracy": 60.416666666666664,
+          "ece": 0.11009550094604492,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 0.28019359707832336,
+              "pearson": 0.4018450379371643,
+              "spearman": 0.3932705521583557
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 0.23614168167114258,
+              "pearson": 0.2538280785083771,
+              "spearman": 0.232626810669899
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        }
+      }
+    }
+  },
+  "sanity_checks": {
+    "saliency": "tensor(False)",
+    "gradcam": true,
+    "integrated_grads": "tensor(True)",
+    "attention_rollout": true
+  }
+}
