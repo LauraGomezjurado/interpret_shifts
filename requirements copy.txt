@@ -1,0 +1,5 @@
+torch>=1.10
+torchvision>=0.11
+matplotlib
+tqdm
+captum  # We'll use this soon for saliency methods
