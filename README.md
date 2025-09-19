@@ -1,122 +1,257 @@
-# ViT Training Optimization for CIFAR-10
+# Interpreting Distribution Shifts in Deep Learning Models
 
-This repository contains optimized training code for Vision Transformers (ViT) on CIFAR-10, with enhanced convergence strategies.
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
+[![PyTorch](https://img.shields.io/badge/PyTorch-1.10+-red.svg)](https://pytorch.org)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-## Key Improvements for Better ViT Convergence
+A comprehensive research project investigating how deep learning models behave under distribution shifts, with focus on attribution method robustness and model interpretability across different data distributions.
 
-### 1. **Learning Rate Scheduling**
-- **Cosine annealing with warmup**: Gradually increases LR for first few epochs, then decreases following cosine schedule
-- **Warmup epochs**: Helps stabilize early training when gradients are large
+## 🎯 Project Overview
 
-### 2. **Gradient Clipping**
-- Prevents gradient explosion common in transformer training
-- Default value: 1.0 (can be adjusted via `--grad_clip`)
+This project addresses a critical challenge in AI safety: **What happens when deep learning models encounter data that differs from their training distribution?** Through extensive experiments with Vision Transformers (ViT) and ResNet architectures, we demonstrate that:
 
-### 3. **Enhanced Data Augmentation**
-- More aggressive augmentation for ViT models
-- Includes: Random rotation, color jitter, horizontal flip
-- Helps improve generalization and convergence
+- 🚨 **Models fail catastrophically** on out-of-distribution (OOD) data while maintaining high confidence
+- 🔍 **Attribution methods become unreliable** precisely when interpretability is most needed  
+- ⚖️ **Calibration breaks down** creating dangerous "confident but wrong" scenarios
+- 🏗️ **Architecture matters** for both performance and interpretability under distribution shift
 
-### 4. **Early Stopping**
-- Monitors validation loss and stops training when no improvement
-- Restores best model weights
-- Prevents overfitting and saves training time
+## 🔬 Key Research Contributions
 
-### 5. **Label Smoothing**
-- Reduces overconfidence and improves generalization
-- Default smoothing factor: 0.1
+### 1. **Comprehensive OOD Analysis Framework**
+- Multi-dataset evaluation (CIFAR-10 → CIFAR-100, SVHN)
+- Performance, calibration, and attribution drift metrics
+- Semantic coherence analysis across distribution shifts
 
-### 6. **Optimized Model Architecture**
-- Better weight initialization (Xavier/Glorot)
-- Enhanced dropout configuration
-- QKV bias enabled for better attention learning
+### 2. **Attribution Method Robustness Study**
+- Saliency Maps, Grad-CAM, Integrated Gradients, Attention Rollout
+- Architecture-specific compatibility analysis
+- Correlation and similarity metrics for attribution drift detection
 
-## Recommended Training Commands
+### 3. **Critical Safety Findings**
+- **71.73% accuracy drop** on OOD data with maintained 61.9% confidence
+- **84.7% attribution dissimilarity** between ID and OOD explanations
+- **16.9× calibration degradation** (ECE: 0.035 → 0.598)
 
-### For ViT from Scratch (Recommended):
+## 📊 Experimental Results
+
+### Performance Comparison (CIFAR-100 OOD)
+
+| Model | ID Accuracy | OOD Accuracy | Attribution IoU | Calibration ECE |
+|-------|-------------|-----------------|-------------------|-------------------|
+| **ViT** | 72.74% | 1.01% | 0.153 | 0.598 |
+| **ResNet** | 77.02% | 0.90% | 0.123 | 0.662 |
+
+### Key Insights
+- **Neither architecture is OOD-safe** without additional safeguards
+- **ViT shows better attribution stability** but worse overall performance
+- **ResNet offers computational efficiency** but limited attribution consistency
+- **Attribution drift serves as OOD indicator** (IoU < 0.2 signals distribution shift)
+
+## 🚀 Quick Start
+
+### Installation
 ```bash
-# High learning rate with larger batch size (if GPU memory allows)
-python main.py --model vit-hf-scratch --epochs 100 --img_size 32 --lr 3e-4 --batch_size 128 --warmup_epochs 10 --patience 15 --grad_clip 1.0 --weight_decay 0.05
-
-# Conservative approach with smaller learning rate
-python main.py --model vit-hf-scratch --epochs 80 --img_size 32 --lr 1e-4 --batch_size 64 --warmup_epochs 8 --patience 12 --grad_clip 0.5 --weight_decay 0.03
+git clone https://github.com/yourusername/interpret_shifts.git
+cd interpret_shifts
+pip install -r requirements.txt
 ```
 
-### For Pretrained ViT Fine-tuning:
+### Basic Usage
+
+#### 1. Train a Model
 ```bash
-python main.py --model vit-hf-pretrained --epochs 30 --img_size 224 --lr 1e-5 --batch_size 32 --warmup_epochs 3 --patience 8 --grad_clip 1.0 --weight_decay 0.01
+# Train ViT from scratch
+python main.py --model vit-hf-scratch --epochs 100 --lr 3e-4 --batch_size 128
+
+# Train ResNet
+python main.py --model resnet --epochs 50 --lr 1e-3 --batch_size 64
 ```
 
-## Training Tips
+#### 2. Run OOD Analysis
+```bash
+# Analyze ViT on CIFAR-100
+python run_ood_experiments.py --model vit --ood_dataset cifar100
 
-### **Learning Rate Selection**
-- **From scratch**: Start with 1e-4 to 3e-4
-- **Fine-tuning**: Use 1e-5 to 5e-5 (much lower)
-- Monitor the learning rate curve in output
+# Analyze ResNet on SVHN  
+python run_ood_experiments.py --model resnet --ood_dataset svhn
+```
 
-### **Batch Size Impact**
-- Larger batch sizes (128+) often help ViT convergence
-- If memory limited, use gradient accumulation
-- Adjust learning rate proportionally with batch size
+#### 3. Generate Visualizations
+```bash
+# Create comprehensive analysis dashboard
+python visualize_ood_results.py --results_dir results/
+```
 
-### **Convergence Indicators**
-- **Good convergence**: Validation loss steadily decreasing, train-val gap < 10%
-- **Need more epochs**: Both losses still decreasing
-- **Overfitting**: Training accuracy >> validation accuracy
-- **Need LR adjustment**: Loss plateaus early or oscillates
+## 📁 Project Structure
 
-### **Troubleshooting Poor Convergence**
+```
+interpret_shifts/
+├── 📄 README.md                    # This file
+├── 📄 requirements.txt            # Dependencies
+├── 📁 src/                        # Core source code
+│   ├── models/                    # Model architectures
+│   ├── utils/                     # Utility functions
+│   └── attribution/               # Attribution methods
+├── 📁 experiments/                # Experiment scripts
+│   ├── training/                  # Model training
+│   ├── ood_analysis/              # OOD experiments
+│   └── visualization/             # Analysis scripts
+├── 📁 results/                    # Experimental results
+│   ├── cifar100_vit/             # ViT CIFAR-100 results
+│   ├── cifar100_resnet/          # ResNet CIFAR-100 results
+│   └── svhn_analysis/           # SVHN analysis results
+├── 📁 docs/                      # Documentation
+│   ├── reports/                  # Analysis reports
+│   └── visualizations/           # Generated plots
+└── 📁 examples/                  # Usage examples
+    ├── quick_start.py           # Basic usage
+    └── custom_analysis.py       # Custom experiments
+```
 
-1. **Loss explodes/NaN**:
-   - Reduce learning rate by 2-5x
-   - Increase gradient clipping (try 0.5)
-   - Check for bad data samples
+## 🔍 Research Methodology
 
-2. **Slow convergence**:
-   - Increase learning rate
-   - Reduce weight decay
-   - Increase warmup epochs
-   - Check data augmentation isn't too aggressive
+### Datasets
+- **In-Distribution**: CIFAR-10 (10 classes, 32×32 images)
+- **Out-of-Distribution**: 
+  - CIFAR-100 (100 classes, similar domain)
+  - SVHN (different domain, overlapping classes)
 
-3. **Overfitting**:
-   - Increase weight decay
-   - Add more dropout
-   - Use more data augmentation
-   - Reduce model size
+### Models
+- **Vision Transformer (ViT)**: Transformer-based architecture
+- **ResNet-18**: Convolutional neural network with residual connections
 
-4. **Underfitting**:
-   - Increase model capacity
-   - Reduce regularization
-   - Train for more epochs
-   - Increase learning rate
+### Attribution Methods
+- **Saliency Maps**: Gradient-based pixel importance
+- **Grad-CAM**: Class activation mapping (CNN-specific)
+- **Integrated Gradients**: Path-integrated attributions
+- **Attention Rollout**: Transformer attention visualization
 
-## Architecture Recommendations
+### Evaluation Metrics
+- **Performance**: Accuracy, F1-score
+- **Calibration**: Expected Calibration Error (ECE)
+- **Attribution Drift**: IoU similarity, Pearson/Spearman correlation
+- **Semantic Analysis**: Prediction distribution, confidence analysis
 
-### For CIFAR-10 (32x32):
-- **Image size**: 32
-- **Patch size**: 4 (gives 8x8 = 64 patches)
-- **Hidden size**: 256-512
-- **Layers**: 8-12
-- **Attention heads**: 8
+## 📈 Key Findings
 
-### Memory Optimization:
-- Use `num_workers=2` and `pin_memory=True` for faster data loading
-- Enable mixed precision training for larger models
-- Consider gradient checkpointing for very deep models
+### 🚨 Critical Safety Issues
+1. **Silent Failure Mode**: Models fail catastrophically while appearing confident
+2. **Explanation Unreliability**: Attribution methods become meaningless on OOD data
+3. **No Built-in Detection**: Models lack mechanisms to identify distribution shift
+4. **Systematic Biases**: Predictable failure patterns that could be exploited
 
-## Expected Performance
+### 🏆 Architecture-Specific Insights
+- **ViT Strengths**: Better attribution stability, superior calibration behavior
+- **ResNet Strengths**: Computational efficiency, broad interpretability compatibility
+- **Both Limitations**: Catastrophic OOD performance, unreliable confidence estimates
 
-With optimized training:
-- **ViT from scratch**: 70-85% accuracy (depends on model size)
-- **Pretrained ViT**: 85-95% accuracy
-- **Training time**: 1-3 hours on modern GPU
+## 🛠️ Technical Implementation
 
-## Monitoring Training
+### Core Features
+- **Modular Design**: Easy to extend with new models and attribution methods
+- **Comprehensive Evaluation**: Multi-faceted analysis combining performance, calibration, and interpretability
+- **Reproducible Results**: Fixed random seeds and complete parameter specifications
+- **Memory Optimization**: Efficient data loading and GPU utilization
 
-The enhanced plotting function provides:
-- Real-time convergence analysis
-- Moving averages for trend visualization
-- Overfitting detection
-- Final performance summary
+### Advanced Capabilities
+- **Cross-dataset validation**: Multiple OOD scenarios
+- **Corruption robustness**: Performance under various corruption levels
+- **Semantic coherence**: Analysis of prediction patterns
+- **Real-time monitoring**: Training progress and convergence analysis
 
-Look for the convergence analysis output to determine if your model needs more training or different hyperparameters.
+## 📊 Generated Artifacts
+
+### Analysis Reports
+- **Comprehensive OOD Analysis**: Detailed performance and calibration breakdown
+- **Attribution Drift Study**: Method-specific robustness analysis
+- **Architecture Comparison**: ResNet vs ViT comprehensive evaluation
+- **Safety Assessment**: Risk analysis for production deployment
+
+### Visualizations
+- **Performance Dashboards**: Multi-metric comparison charts
+- **Attribution Drift Plots**: IoU and correlation analysis
+- **Semantic Analysis**: Prediction distribution and confidence patterns
+- **Calibration Assessment**: Reliability diagrams and ECE analysis
+
+## 🎯 Applications
+
+### Research Use Cases
+- **AI Safety Research**: Understanding model limitations under distribution shift
+- **Interpretability Studies**: Evaluating explanation method robustness
+- **Model Evaluation**: Comprehensive assessment beyond accuracy metrics
+- **OOD Detection**: Developing methods for distribution shift identification
+
+### Industry Applications
+- **Medical AI**: Ensuring reliable diagnosis across diverse patient populations
+- **Autonomous Systems**: Safe deployment in novel environments
+- **Financial Systems**: Robust risk assessment under changing market conditions
+- **Quality Assurance**: Model reliability testing for production deployment
+
+## 🔮 Future Work
+
+### Immediate Next Steps
+- [ ] Complete ResNet analysis on additional OOD datasets
+- [ ] Implement proposed OOD detection methods
+- [ ] Test calibration improvement techniques
+- [ ] Extend to vision-language models
+
+### Long-term Research
+- [ ] Hybrid architectures combining CNN and Transformer strengths
+- [ ] Attribution-aware training for consistent explanations
+- [ ] Real-world deployment testing
+- [ ] Regulatory framework development for OOD safety
+
+## 📚 References
+
+### Key Papers
+- [Attention Is All You Need](https://arxiv.org/abs/1706.03762) - Transformer architecture
+- [ResNet](https://arxiv.org/abs/1512.03385) - Residual networks
+- [Grad-CAM](https://arxiv.org/abs/1610.02391) - Class activation mapping
+- [Integrated Gradients](https://arxiv.org/abs/1703.01365) - Attribution method
+
+### Related Work
+- Distribution shift detection methods
+- Model calibration techniques
+- Attribution method robustness
+- AI safety and reliability
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+
+### Areas for Contribution
+- New attribution methods
+- Additional OOD datasets
+- Improved visualization tools
+- Documentation improvements
+- Performance optimizations
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👥 Authors
+
+**Laura Gomez** - *Initial work and comprehensive analysis*
+- GitHub: [@lauragomez](https://github.com/lauragomez)
+- Email: laura.gomez@example.com
+
+## 🙏 Acknowledgments
+
+- PyTorch team for the excellent deep learning framework
+- Hugging Face for transformer model implementations
+- Captum team for attribution method implementations
+- CIFAR and SVHN dataset creators for providing evaluation benchmarks
+
+## 📞 Contact
+
+For questions, suggestions, or collaboration opportunities:
+- **Email**: laura.gomez@example.com
+- **GitHub Issues**: [Create an issue](https://github.com/yourusername/interpret_shifts/issues)
+- **Discussions**: [Join the conversation](https://github.com/yourusername/interpret_shifts/discussions)
+
+---
+
+**⚠️ Important Notice**: This research demonstrates critical safety limitations in current deep learning models. Models should never be deployed in production without proper OOD detection and uncertainty quantification mechanisms.
+
+**🔬 Research Impact**: This work provides both a sobering assessment of current AI limitations and a roadmap for building more reliable, interpretable, and safe AI systems.
