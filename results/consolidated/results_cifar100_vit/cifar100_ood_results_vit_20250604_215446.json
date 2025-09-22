@@ -1,0 +1,653 @@
+{
+  "timestamp": "2025-06-04T21:42:38.660037",
+  "model_type": "vit",
+  "device": "cpu",
+  "num_samples": 800,
+  "performance": {
+    "cifar10_accuracy": 72.74,
+    "cifar100_accuracy": 1.01,
+    "cifar10_samples": 10000,
+    "cifar100_samples": 10000,
+    "accuracy_drop": 71.72999999999999
+  },
+  "calibration": {
+    "cifar10_ece": 0.035384729504585266,
+    "cifar100_ece": 0.5983456969261169,
+    "ece_increase": 0.5629609674215317
+  },
+  "attribution_drift": {
+    "cifar100": {
+      "drift_metrics": {
+        "saliency": {
+          "iou": 0.15280966460704803,
+          "pearson": 0.10579495877027512,
+          "spearman": 0.10415908694267273
+        },
+        "gradcam": {
+          "iou": 0.0,
+          "pearson": null,
+          "spearman": 1.0
+        },
+        "integrated_grads": {
+          "iou": 0.1502131223678589,
+          "pearson": 0.006423299666494131,
+          "spearman": 0.004410842899233103
+        },
+        "attention_rollout": {
+          "iou": 0.0,
+          "pearson": null,
+          "spearman": 1.0
+        }
+      },
+      "specific_metrics": {
+        "saliency_intensity_ratio": 1.317982189234165,
+        "saliency_cifar10_intensity": 0.020063621923327446,
+        "saliency_cifar100_intensity": 0.026443496346473694,
+        "gradcam_intensity_ratio": 0,
+        "gradcam_cifar10_intensity": 0.0,
+        "gradcam_cifar100_intensity": 0.0,
+        "integrated_grads_intensity_ratio": 1.1037328689109713,
+        "integrated_grads_cifar10_intensity": 0.025445833802223206,
+        "integrated_grads_cifar100_intensity": 0.02808540314435959,
+        "attention_rollout_intensity_ratio": 1.0,
+        "attention_rollout_cifar10_intensity": 1.0,
+        "attention_rollout_cifar100_intensity": 1.0
+      }
+    },
+    "corruptions": {
+      "gaussian_noise": {
+        "1": {
+          "accuracy": 54.666666666666664,
+          "ece": 0.1392713040113449,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 0.23037487268447876,
+              "pearson": 0.2671005129814148,
+              "spearman": 0.3439974784851074
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 0.32043370604515076,
+              "pearson": 0.22396309673786163,
+              "spearman": 0.26309913396835327
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        },
+        "3": {
+          "accuracy": 20.666666666666668,
+          "ece": 0.40636080503463745,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 0.15880070626735687,
+              "pearson": 0.11664855480194092,
+              "spearman": 0.1328049749135971
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 0.18961794674396515,
+              "pearson": 0.01804112084209919,
+              "spearman": 0.01767141930758953
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        },
+        "5": {
+          "accuracy": 16.333333333333332,
+          "ece": 0.4023725092411041,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 0.14709259569644928,
+              "pearson": 0.08598911762237549,
+              "spearman": 0.09260276705026627
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 0.16422435641288757,
+              "pearson": 0.0045625315979123116,
+              "spearman": 0.003969411365687847
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        }
+      },
+      "brightness": {
+        "1": {
+          "accuracy": 63.333333333333336,
+          "ece": 0.08715483546257019,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 0.439668208360672,
+              "pearson": 0.632960319519043,
+              "spearman": 0.6663044095039368
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 0.344277948141098,
+              "pearson": 0.47698649764060974,
+              "spearman": 0.45101264119148254
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        },
+        "3": {
+          "accuracy": 24.333333333333332,
+          "ece": 0.36832600831985474,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 0.1649564951658249,
+              "pearson": 0.14730244874954224,
+              "spearman": 0.14259441196918488
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 0.18053576350212097,
+              "pearson": 0.03356872871518135,
+              "spearman": 0.026343612000346184
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        },
+        "5": {
+          "accuracy": 12.0,
+          "ece": 0.5895774364471436,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 0.16983048617839813,
+              "pearson": 0.16731198132038116,
+              "spearman": 0.12703953683376312
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 0.17260360717773438,
+              "pearson": 0.020931299775838852,
+              "spearman": 0.01589062623679638
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        }
+      },
+      "contrast": {
+        "1": {
+          "accuracy": 66.33333333333333,
+          "ece": 0.09191087633371353,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 0.5124126672744751,
+              "pearson": 0.7245224118232727,
+              "spearman": 0.7387526035308838
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 0.47171077132225037,
+              "pearson": 0.6092441082000732,
+              "spearman": 0.6277168393135071
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        },
+        "3": {
+          "accuracy": 56.666666666666664,
+          "ece": 0.13673414289951324,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 0.27383869886398315,
+              "pearson": 0.3876217007637024,
+              "spearman": 0.39883267879486084
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 0.23552124202251434,
+              "pearson": 0.2527996003627777,
+              "spearman": 0.24067866802215576
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        },
+        "5": {
+          "accuracy": 43.333333333333336,
+          "ece": 0.22884778678417206,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 0.2090957760810852,
+              "pearson": 0.24182729423046112,
+              "spearman": 0.25602856278419495
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 0.17782755196094513,
+              "pearson": 0.09508170932531357,
+              "spearman": 0.09386303275823593
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        }
+      },
+      "fog": {
+        "1": {
+          "accuracy": 69.0,
+          "ece": 0.08248557895421982,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 1.0,
+              "pearson": 0.9999998807907104,
+              "spearman": 0.9999998807907104
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 1.0,
+              "pearson": 1.0,
+              "spearman": 1.0
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        },
+        "3": {
+          "accuracy": 69.0,
+          "ece": 0.08248557895421982,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 1.0,
+              "pearson": 0.9999998807907104,
+              "spearman": 0.9999998807907104
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 1.0,
+              "pearson": 1.0,
+              "spearman": 1.0
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        },
+        "5": {
+          "accuracy": 69.0,
+          "ece": 0.08248557895421982,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 1.0,
+              "pearson": 0.9999998807907104,
+              "spearman": 0.9999998807907104
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 1.0,
+              "pearson": 1.0,
+              "spearman": 1.0
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        }
+      },
+      "frost": {
+        "1": {
+          "accuracy": 69.0,
+          "ece": 0.08248557895421982,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 1.0,
+              "pearson": 0.9999998807907104,
+              "spearman": 0.9999998807907104
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 1.0,
+              "pearson": 1.0,
+              "spearman": 1.0
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        },
+        "3": {
+          "accuracy": 69.0,
+          "ece": 0.08248557895421982,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 1.0,
+              "pearson": 0.9999998807907104,
+              "spearman": 0.9999998807907104
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 1.0,
+              "pearson": 1.0,
+              "spearman": 1.0
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        },
+        "5": {
+          "accuracy": 69.0,
+          "ece": 0.08248557895421982,
+          "attribution_drift": {
+            "saliency": {
+              "iou": 1.0,
+              "pearson": 0.9999998807907104,
+              "spearman": 0.9999998807907104
+            },
+            "gradcam": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            },
+            "integrated_grads": {
+              "iou": 1.0,
+              "pearson": 1.0,
+              "spearman": 1.0
+            },
+            "attention_rollout": {
+              "iou": 0.0,
+              "pearson": null,
+              "spearman": 0.9999999403953552
+            }
+          }
+        }
+      }
+    },
+    "cross_dataset_comparison": {
+      "saliency": {
+        "cifar100_iou": 0.15280966460704803,
+        "svhn_iou": 0.15811629593372345,
+        "cifar100_pearson": 0.10579495877027512,
+        "svhn_pearson": 0.12308713048696518
+      },
+      "gradcam": {
+        "cifar100_iou": 0.0,
+        "svhn_iou": 0.0,
+        "cifar100_pearson": null,
+        "svhn_pearson": null
+      },
+      "integrated_grads": {
+        "cifar100_iou": 0.1502131223678589,
+        "svhn_iou": 0.1574290692806244,
+        "cifar100_pearson": 0.006423299666494131,
+        "svhn_pearson": -0.0008728464599698782
+      },
+      "attention_rollout": {
+        "cifar100_iou": 0.0,
+        "svhn_iou": 0.0,
+        "cifar100_pearson": null,
+        "svhn_pearson": null
+      }
+    }
+  },
+  "sanity_checks": {
+    "saliency": "tensor(False)",
+    "gradcam": true,
+    "integrated_grads": "tensor(True)",
+    "attention_rollout": true
+  },
+  "semantic_analysis": {
+    "prediction_distribution": {
+      "airplane": 53,
+      "automobile": 23,
+      "bird": 47,
+      "cat": 84,
+      "deer": 64,
+      "dog": 62,
+      "frog": 57,
+      "horse": 30,
+      "ship": 26,
+      "truck": 54
+    },
+    "confidence_analysis": {
+      "mean_confidence": 0.6194230914115906,
+      "std_confidence": 0.19457828998565674,
+      "low_confidence_ratio": 0.32
+    },
+    "semantic_categories": {
+      "airplane": [
+        [
+          "cloud",
+          4
+        ],
+        [
+          "sea",
+          4
+        ],
+        [
+          "ray",
+          4
+        ]
+      ],
+      "automobile": [
+        [
+          "pickup_truck",
+          5
+        ],
+        [
+          "apple",
+          2
+        ],
+        [
+          "flatfish",
+          1
+        ]
+      ],
+      "bird": [
+        [
+          "bee",
+          3
+        ],
+        [
+          "caterpillar",
+          3
+        ],
+        [
+          "cockroach",
+          3
+        ]
+      ],
+      "cat": [
+        [
+          "snail",
+          4
+        ],
+        [
+          "wolf",
+          3
+        ],
+        [
+          "lamp",
+          3
+        ]
+      ],
+      "deer": [
+        [
+          "forest",
+          4
+        ],
+        [
+          "leopard",
+          4
+        ],
+        [
+          "mushroom",
+          2
+        ]
+      ],
+      "dog": [
+        [
+          "boy",
+          4
+        ],
+        [
+          "hamster",
+          3
+        ],
+        [
+          "raccoon",
+          3
+        ]
+      ],
+      "frog": [
+        [
+          "crocodile",
+          4
+        ],
+        [
+          "crab",
+          3
+        ],
+        [
+          "apple",
+          2
+        ]
+      ],
+      "horse": [
+        [
+          "tractor",
+          3
+        ],
+        [
+          "castle",
+          3
+        ],
+        [
+          "flatfish",
+          2
+        ]
+      ],
+      "ship": [
+        [
+          "sea",
+          4
+        ],
+        [
+          "mountain",
+          3
+        ],
+        [
+          "whale",
+          2
+        ]
+      ],
+      "truck": [
+        [
+          "house",
+          4
+        ],
+        [
+          "oak_tree",
+          3
+        ],
+        [
+          "bicycle",
+          3
+        ]
+      ]
+    }
+  }
+}

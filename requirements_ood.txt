@@ -1,0 +1,24 @@
+# Additional requirements for OOD experiments
+# (Base requirements assumed to be already installed)
+
+# Data handling
+pandas>=1.5.0
+scikit-learn>=1.0.0
+
+# Attribution methods
+captum>=0.6.0
+
+# Image processing (if not already installed)
+Pillow>=8.0.0
+
+# Additional utilities
+tqdm>=4.64.0
+scipy>=1.9.0
+
+# For advanced attribution methods
+opencv-python>=4.5.0  # For advanced image processing
+matplotlib>=3.5.0     # For visualization (should already be installed)
+
+# Optional: for more robust experiments
+tensorboard>=2.8.0    # For logging (if not already installed)
+seaborn>=0.11.0       # For better plotting 

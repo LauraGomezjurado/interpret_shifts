@@ -1,0 +1,16 @@
+python main.py --model resnet --epochs 10 --img_size 32
+
+# ResNet with optimized training (for comparison with ViT)
+python main.py --model resnet --epochs 50 --img_size 32 --lr 1e-3 --batch_size 32 --warmup_epochs 5 --patience 10 --grad_clip 1.0 --weight_decay 0.03
+
+# Fast CPU-friendly small ViT for testing convergence improvements
+python main.py --model vit-hf-scratch-small --epochs 50 --img_size 32 --lr 1e-3 --batch_size 32 --warmup_epochs 5 --patience 10 --grad_clip 1.0 --weight_decay 0.03
+
+# Improved ViT from scratch training with optimized hyperparameters
+python main.py --model vit-hf-scratch --epochs 100 --img_size 32 --lr 3e-4 --batch_size 128 --warmup_epochs 10 --patience 15 --grad_clip 1.0 --weight_decay 0.05
+
+# Alternative with smaller learning rate for more stable convergence
+python main.py --model vit-hf-scratch --epochs 80 --img_size 32 --lr 1e-4 --batch_size 64 --warmup_epochs 8 --patience 12 --grad_clip 0.5 --weight_decay 0.03
+
+# Pretrained ViT fine-tuning (typically converges faster)
+python main.py --model vit-hf-pretrained --epochs 30 --img_size 224 --lr 1e-5 --batch_size 32 --warmup_epochs 3 --patience 8 --grad_clip 1.0 --weight_decay 0.01

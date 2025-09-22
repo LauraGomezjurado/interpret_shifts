@@ -1,0 +1,14 @@
+experiment,dataset,metric,value
+performance,cifar10,accuracy,77.02
+performance,cifar100,accuracy,0.9
+calibration,cifar10,ece,0.0644538551568985
+calibration,cifar100,ece,0.6616083383560181
+attribution_drift,cifar100,saliency_iou,0.12346015870571136
+attribution_drift,cifar100,saliency_pearson,0.034180618822574615
+attribution_drift,cifar100,saliency_spearman,0.04493250697851181
+attribution_drift,cifar100,gradcam_iou,0.10404382646083832
+attribution_drift,cifar100,gradcam_pearson,-0.03599986061453819
+attribution_drift,cifar100,gradcam_spearman,0.045749641954898834
+attribution_drift,cifar100,integrated_grads_iou,0.12753081321716309
+attribution_drift,cifar100,integrated_grads_pearson,0.0024026460014283657
+attribution_drift,cifar100,integrated_grads_spearman,0.0013983537210151553

@@ -1,0 +1,5 @@
+data/cifar-10-python.tar.gz
+# Large dataset files (not suitable for git tracking)
+data/
+*.tar.gz
+*.mat
