@@ -41,6 +41,20 @@ This project addresses a critical challenge in AI safety: **What happens when de
 | **ViT** | 72.74% | 1.01% | 0.153 | 0.598 |
 | **ResNet** | 77.02% | 0.90% | 0.123 | 0.662 |
 
+### Key Visualizations
+
+#### Performance Dashboard
+![Performance Dashboard](results/consolidated/results_cifar100_vit/visualizations/performance_comparison.png)
+*Comprehensive performance analysis showing catastrophic failure on OOD data*
+
+#### Attribution Drift Analysis  
+![Attribution Drift](results/consolidated/results_cifar100_vit/visualizations/attribution_drift.png)
+*Attribution method reliability breakdown across distribution shifts*
+
+#### Saliency Maps Comparison
+![Saliency Comparison](results/consolidated/saliency_cifar100/saliency_comparison_cifar100_vit.png)
+*Visual comparison of attribution methods on ID vs OOD data*
+
 ### Key Insights
 - **Neither architecture is OOD-safe** without additional safeguards
 - **ViT shows better attribution stability** but worse overall performance
@@ -49,9 +63,15 @@ This project addresses a critical challenge in AI safety: **What happens when de
 
 ## 🚀 Quick Start
 
+### 🎯 One-Click Demo
+**Try our interactive Colab notebook to see the critical safety findings in action:**
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lauragomez/interpret_shifts/blob/main/quick_demo.ipynb)
+
+*This notebook demonstrates the key findings using cached experimental results - no training required!*
+
 ### Installation
 ```bash
-git clone https://github.com/yourusername/interpret_shifts.git
+git clone https://github.com/lauragomez/interpret_shifts.git
 cd interpret_shifts
 pip install -r requirements.txt
 ```
@@ -70,16 +90,16 @@ python main.py --model resnet --epochs 50 --lr 1e-3 --batch_size 64
 #### 2. Run OOD Analysis
 ```bash
 # Analyze ViT on CIFAR-100
-python run_ood_experiments.py --model vit --ood_dataset cifar100
+python scripts/run_ood_experiments.py --model vit --ood_dataset cifar100
 
 # Analyze ResNet on SVHN  
-python run_ood_experiments.py --model resnet --ood_dataset svhn
+python scripts/run_ood_experiments.py --model resnet --ood_dataset svhn
 ```
 
 #### 3. Generate Visualizations
 ```bash
 # Create comprehensive analysis dashboard
-python visualize_ood_results.py --results_dir results/
+python scripts/visualize_ood_results.py --results_dir results/
 ```
 
 ## 📁 Project Structure
@@ -88,24 +108,33 @@ python visualize_ood_results.py --results_dir results/
 interpret_shifts/
 ├── 📄 README.md                    # This file
 ├── 📄 requirements.txt            # Dependencies
+├── 📄 quick_demo.ipynb           # One-click Colab demo
 ├── 📁 src/                        # Core source code
 │   ├── models/                    # Model architectures
 │   ├── utils/                     # Utility functions
 │   └── attribution/               # Attribution methods
-├── 📁 experiments/                # Experiment scripts
+├── 📁 scripts/                    # Analysis and experiment scripts
+│   ├── run_ood_experiments*.py   # OOD analysis scripts
+│   ├── visualize_*.py             # Visualization scripts
+│   └── resnet_run.sh             # Training scripts
+├── 📁 experiments/                # Experiment configurations
 │   ├── training/                  # Model training
 │   ├── ood_analysis/              # OOD experiments
 │   └── visualization/             # Analysis scripts
 ├── 📁 results/                    # Experimental results
-│   ├── cifar100_vit/             # ViT CIFAR-100 results
-│   ├── cifar100_resnet/          # ResNet CIFAR-100 results
-│   └── svhn_analysis/           # SVHN analysis results
+│   ├── consolidated/             # All results consolidated
+│   ├── results_cifar100_vit/     # ViT CIFAR-100 results
+│   └── results_cifar100_resnet/  # ResNet CIFAR-100 results
+├── 📁 analysis/                   # Analysis reports and summaries
+│   ├── ResNet_vs_ViT_OOD_Analysis_Report.md
+│   └── [other analysis reports]
 ├── 📁 docs/                      # Documentation
-│   ├── reports/                  # Analysis reports
+│   ├── reports/                  # Detailed analysis reports
 │   └── visualizations/           # Generated plots
+├── 📁 models/                    # Trained model checkpoints
 └── 📁 examples/                  # Usage examples
     ├── quick_start.py           # Basic usage
-    └── custom_analysis.py       # Custom experiments
+    └── custom_analysis.py         # Custom experiments
 ```
 
 ## 🔍 Research Methodology
@@ -115,6 +144,13 @@ interpret_shifts/
 - **Out-of-Distribution**: 
   - CIFAR-100 (100 classes, similar domain)
   - SVHN (different domain, overlapping classes)
+
+**Dataset Selection Rationale**: We deliberately chose CIFAR-10/100 and SVHN as our evaluation benchmarks for several critical reasons:
+- **Controlled Environment**: These datasets provide a controlled laboratory setting for mechanistic analysis of distribution shift effects
+- **Computational Efficiency**: Enables extensive experimentation with multiple models, attribution methods, and hyperparameter sweeps
+- **Established Baselines**: Well-studied datasets with known failure modes, allowing for systematic comparison with existing literature
+- **Reproducibility**: Standardized datasets ensure experimental reproducibility and facilitate comparison across research groups
+- **Mechanistic Insights**: The relatively simple visual features in these datasets make it easier to understand and interpret model behavior under distribution shift
 
 ### Models
 - **Vision Transformer (ViT)**: Transformer-based architecture
@@ -234,7 +270,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Laura Gomez** - *Initial work and comprehensive analysis*
 - GitHub: [@lauragomez](https://github.com/lauragomez)
-- Email: laura.gomez@example.com
+- Email: laura.gomez@stanford.edu
 
 ## 🙏 Acknowledgments
 
@@ -246,9 +282,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Contact
 
 For questions, suggestions, or collaboration opportunities:
-- **Email**: laura.gomez@example.com
-- **GitHub Issues**: [Create an issue](https://github.com/yourusername/interpret_shifts/issues)
-- **Discussions**: [Join the conversation](https://github.com/yourusername/interpret_shifts/discussions)
+- **Email**: laura.gomez@stanford.edu
+- **GitHub Issues**: [Create an issue](https://github.com/lauragomez/interpret_shifts/issues)
+- **Discussions**: [Join the conversation](https://github.com/lauragomez/interpret_shifts/discussions)
 
 ---
 
