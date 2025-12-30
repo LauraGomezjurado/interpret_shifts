@@ -3,3 +3,7 @@ data/cifar-10-python.tar.gz
 data/
 *.tar.gz
 *.mat
+
+# Markdown files - keep locally but don't track in git
+*.md
+!README.md
